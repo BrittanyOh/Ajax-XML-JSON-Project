@@ -4,22 +4,27 @@ var method = "GET";
 var url = "booklist.php";
 var asynchronous = true;
 var genre = [];
+var radiovalue;
 
 ajax.open(method, url, asynchronous);
 // sendindg ajax request
 ajax.send();
 
-document.getElementById("list-books").addEventListener("click", function(){
-  document.getElementById("book-data").style.display = 'block';
+document.ready(function(){
+  //LIST BOOKS BY CATEGORY
+    $("list-books").click(function(){
+            $("book-data").style.display = 'block';
+    });
 });
 // receiving response from booklist.php
+
 ajax.onreadystatechange = function()
 {
   if (this.readyState == 4 && this.status == 200)
   {
     // converting JSON back to array
     var data = JSON.parse(this.responseText);
-    console.log(data); // for debugging
+    console.log(data);// for debugging
 
     var input = "";
     var html = "";
@@ -29,7 +34,7 @@ ajax.onreadystatechange = function()
       var cat = data[i].CategoryName;
       if(!genre.includes(cat)){
           genre.push(cat);
-          input += "<input type='radio'>"+ cat + "</input>";
+          input += "<input type='radio' class='category' value="+ cat + ">"+ cat + "</input>";
         }
     }
 

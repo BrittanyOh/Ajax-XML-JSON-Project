@@ -2,13 +2,16 @@
 
 ?>
 <head>
-  <link rel="stylesheet" href="books.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="books.css">
   <title>Book List</title>
 </head>
 <body>
   <h1>Book List</h1>
-  <div id="radio-buttons" class="btns"></div>
-  <button class="btns" id="list-books">List Books</button>
+  <form>
+    <div id="radio-buttons" class="btns"></div>
+    <button type="submit" class="btns" id="list-books">List Books</button>
+  </form>
   <table id="book-data">
     <tr>
       <th>Title</th>
