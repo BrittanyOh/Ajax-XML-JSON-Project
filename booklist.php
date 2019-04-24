@@ -16,5 +16,4 @@ $result = mysqli_query($conn, "SELECT DISTINCT book.title, a.F_Name, a.L_Name, y
   {
     $data[] = $row;
   }
-  echo json_encode($data);
 ?>
