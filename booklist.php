@@ -1,19 +1,40 @@
 <?php
-
 // getting data from database
-// getting data from database
-$conn = new mysqli("localhost", "root", "521347", "books");
+  // getting data from database
+  $conn = new mysqli("localhost", "root", "521347", "books");
 
-$result = mysqli_query($conn, "SELECT DISTINCT book.title, a.F_Name, a.L_Name, y.bookYear, book.categoryID, c.CategoryName, p.price
-                                FROM Titles book, Years y,Author a,Prices p,Category c
-                                WHERE book.categoryID = c.categoryID
-                                AND a.bookID = book.bookID
-                                AND y.bookID = book.bookID
-                                AND p.bookID = book.bookID");
+  $result = mysqli_query($conn, "SELECT DISTINCT book.title, a.F_Name, a.L_Name, y.bookYear, book.categoryID, c.CategoryName, p.price
+          FROM Titles book, Years y,Author a,Prices p,Category c
+          WHERE book.categoryID = c.categoryID
+          AND a.bookID = book.bookID
+          AND y.bookID = book.bookID
+          AND p.bookID = book.bookID");
 
   $data = array();
-  while ($row = mysqli_fetch_assoc($result))
-  {
-    $data[] = $row;
-  }
+
+
+  if(isset($_REQUEST["Category"])){
+    $searchCat = $_REQUEST['Category'];
+    $sql =  "SELECT DISTINCT book.title, a.F_Name, a.L_Name, y.bookYear, book.categoryID, c.CategoryName, p.price
+            FROM Titles book, Years y,Author a,Prices p,Category c
+            WHERE book.categoryID = c.categoryID
+            AND a.bookID = book.bookID
+            AND y.bookID = book.bookID
+            AND p.bookID = book.bookID
+            AND c.categoryName = \"$searchCat\"";
+
+      $result = mysqli_query($conn, $sql);
+
+      while($row = mysqli_fetch_assoc($result)){
+          $data[] = $row;
+      }
+      echo json_encode($data);
+    }
+    else{
+      while($row = mysqli_fetch_assoc($result)){
+          $data[] = $row;
+      }
+      echo json_encode($data);
+    }
+
 ?>
