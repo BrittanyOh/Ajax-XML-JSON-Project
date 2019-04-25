@@ -24,17 +24,16 @@
             AND c.categoryName = \"$searchCat\"";
 
       $result = mysqli_query($conn, $sql);
-
-      while($row = mysqli_fetch_assoc($result)){
-          $data[] = $row;
-      }
-      echo json_encode($data);
     }
-    else{
       while($row = mysqli_fetch_assoc($result)){
-          $data[] = $row;
+        echo "<tr class='book-details'>";
+        echo "<td id='book-title'>".$row['title']."</td>";
+        echo "<td id='book-author'>".$row['F_Name']."</td>";
+        echo "<td id='book-author'>".$row['L_Name']."</td>";
+        echo "<td id='book-year'>".$row['bookYear']."</td>";
+        echo "<td id='book-cat-id'>".$row['categoryID']."</td>";
+        echo "<td id='book-cat'>".$row['CategoryName']."</td>";
+        echo "<td id='book-price'>".$row['price']."</td>";
+        echo "</tr>";
       }
-      echo json_encode($data);
-    }
-
 ?>

@@ -1,15 +1,8 @@
-<?php
-    include 'booklist.php';
-  ?>
-
   <!DOCTYPE html>
   <html>
   <head>
     <title>Book List</title>
     <link rel="stylesheet" type="text/css" href="books.css">
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="books.js" type="text/javascript"></script>
 
   </head>
 
@@ -18,8 +11,10 @@
     <p>Please select a category from below!
     <div class="formpost">
 
-      <form action="books.php" method="get" id="categorize">
+      <form method="get" id="categorize">
             <?php
+            $conn = new mysqli("localhost", "root", "521347", "books");
+
               $sql = "SELECT DISTINCT c.categoryName from Category c";
               $categories = mysqli_query($conn, $sql);
               if(mysqli_num_rows($categories) > 0){
@@ -46,8 +41,14 @@
           <td id='book-categoryName'>CategoryName</td>
           <td id='book-price'>Price</td>
         </tr>
+        <?php
+            include 'booklist.php';
+          ?>
       </table>
     </div>
 
   </body>
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="books.js" type="text/javascript"></script>
   </html>
