@@ -19,7 +19,7 @@
               $categories = mysqli_query($conn, $sql);
               if(mysqli_num_rows($categories) > 0){
                 while($row = mysqli_fetch_assoc($categories)){
-                  echo "<input type='checkbox' class='category' name='Category' value=".$row['categoryName']." />" ;
+                  echo "<input type='radio' class='category' name='Category' value=".$row['categoryName']." />" ;
                   echo $row['categoryName'];
                   }
                 }else {
@@ -45,6 +45,9 @@
             include 'booklist.php';
           ?>
       </table>
+    </div>
+
+    <div id="format">
     </div>
 
   </body>
